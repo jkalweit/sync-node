@@ -14,6 +14,7 @@ var SyncNodeServer = (function () {
         var _this = this;
         if (defaultData === void 0) { defaultData = {}; }
         this.namespace = namespace;
+        this.directory = 'data';
         this.io = io;
         this.get(function (data) {
             _this.data = data;
@@ -111,7 +112,7 @@ var SyncNodeServer = (function () {
         });
     };
     SyncNodeServer.prototype.buildFilePath = function () {
-        return path.join(this.directory, this.filename + '.json');
+        return path.join(this.directory, this.namespace + '.json');
     };
     return SyncNodeServer;
 })();
