@@ -25,7 +25,6 @@ class Response {
 
 export class SyncNodeServer {
 	namespace: string;
-	filename: string;
     	directory: string;
 	io: SocketIO.Server;
 	ioNamespace: SocketIO.Namespace;
@@ -34,8 +33,9 @@ export class SyncNodeServer {
 
 	constructor(namespace: string, io: SocketIO.Server, defaultData: any = {}) {
 		this.namespace  = namespace;
+		this.directory = 'data';
 		this.io = io;
-
+		
 		this.get((data: any) => {
 			this.data = data;
 			if(!this.data) {
@@ -142,7 +142,7 @@ export class SyncNodeServer {
     }
 
     buildFilePath(): string {
-        return path.join(this.directory, this.filename + '.json');
+        return path.join(this.directory, this.namespace + '.json');
     }
 
 }
